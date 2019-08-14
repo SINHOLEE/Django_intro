@@ -22,7 +22,11 @@ from django.urls import path
 from pages import views
 
 urlpatterns = [
-    path('dinner/', views.dinner),
+    path('template_language/', views.template_language),
+    path('times/<int:num1>/<int:num2>/', views.times),
+    path('greeting/<str:name>/', views.greeting),
+    path('image/', views.image),
+    path('dinner/<str:name>/', views.dinner),
     path('index/', views.index),
     path('introduce/', views.introduce),
     path('admin/', admin.site.urls),

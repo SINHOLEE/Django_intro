@@ -157,3 +157,71 @@ pages/templates/index.html만든다.
 
 # 5. dinner recommend code 작성
 
+1. views.py안에 작성
+
+```python
+# Template Variable example
+def dinner(request):
+    menu = ['강남 더막창스', '노랑통닭', '양자강']
+
+    # 최대한 다른함수나 메소드, 어트리뷰트등 겹치지 않게 한다.
+    pick = random.choice(menu)
+    context = {
+        'pick' : pick,
+    }
+    # Django template로 context 전달
+    return render(request, 'dinner.html', context)
+    
+```
+
+- context 안에 dictionary형태로 정보를 저장하면 html 에 {{ <변수이름> }}을 삽입하면 변수를 호출할 수 있게 된다.
+
+1. urls.py에 등록
+2. html파일 생성 
+
+
+
+# 6. variable routing
+
+1. urls.py
+
+```python
+urlpatterns = [
+    path('greeting/<str:name>/', views.greeting),
+]
+```
+
+2. views.py
+
+```python
+def greeting(request, name):
+
+    context = {
+        'name' : name,
+    }
+    return render(request,'greeting_iu.html', context)
+
+```
+
+3. greeting.html
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>greeting!</title>
+</head>
+<body>
+  <h1>안녕 ! {{ name }}</h1>
+  
+</body>
+</html>
+```
+
+
+
+# 7. Django template language
+
