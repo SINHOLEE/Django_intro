@@ -101,16 +101,52 @@ def lotto(request):
     real_lotto = [21, 25, 30, 32, 40, 42]
     lotto = sorted(random.sample(range(1,46), 6))  # 희원이가 랜덤으로 뽑은 로또
     count = 0
-    get = ''
-    while get != 'get':
-        count += 1
-        if real_lotto == lotto:
-            get  = 'get'
-            break
+    
     context = {
         'real_lotto' : real_lotto,
         'lotto' : lotto,
-        'count' : count,
     }
 
     return render(request, 'lotto.html', context)
+
+def search(request):
+    return render(request, 'search.html')
+
+def result(request):
+    category = request.GET.get('category')
+    query = request.GET.get('query')
+    context = {
+        'query' : query,
+        'category' : category,
+    }
+    return render(request, 'result.html', context)
+
+def lotto_pick(request):
+    
+    return render(request, 'lotto_pick.html')
+
+def lotto_result(request):
+    nums = list(map(int, request.GET.get('pick').split()))
+    sorted_nums = sorted(nums)
+    real_lotto = [21, 25, 30, 32, 40, 42]
+    count = 0
+    for i in range(6):
+        if sorted_nums[i] == real_lotto[i]:
+            count += 1
+    context = {
+        'nums' : nums,
+        'real_lotto' : real_lotto,
+        'count' : count,
+    }
+    return render(request, 'lotto_result.html',context)
+
+def api_lotto(request):
+    return render(request, 'api_lotto.html')
+
+
+def api_lotto_result(request):
+    url = 'https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=870#'
+    aa = request.GET
+    print(aa)
+    return render(request, 'api_lotto_result.html')
+

@@ -22,6 +22,12 @@ from django.urls import path
 from pages import views
 
 urlpatterns = [
+    path('api_lotto/', views.api_lotto),
+    path('api_lotto_result/', views.api_lotto_result),
+    path('lotto_pick/', views.lotto_pick),
+    path('lotto_result/', views.lotto_result),
+    path('result/', views.result),
+    path('search/', views.search),
     path('lotto/', views.lotto),
     path('isitbirthday/', views.isitbirthday),
     path('template_language/', views.template_language),

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lotto result</title>
+</head>
+<body>
+  <p>내가 뽑은 번호: {{ nums }}</p>
+  <p> 당첨 번호: {{ real_lotto }}</p>
+ 
+  <hr>
+
+  <h2>결과!</h2>
+  {% if count == 6 %}
+  <p>1등 이닷!</p>
+  {% elif count == 5 %}
+  <p>2등이다.</p>
+  {% elif count == 4 %}
+  <p>3등이다.</p>
+  {% elif count == 3 %}
+  <p>4등이다.</p>
+  {% else %}
+  <p>꽝</p>
+  
+  {% endif %}
+</body>
+</html>
