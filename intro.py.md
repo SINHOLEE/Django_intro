@@ -225,3 +225,139 @@ def greeting(request, name):
 
 # 7. Django template language
 
+1. template_language.html
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>template language</title>
+ 
+
+</head>
+<body>
+  <h1>Template language</h1>
+  <hr>
+
+  {% comment %} for문 {% endcomment %}
+  <h2>1. 반복문</h2>
+  {% comment %} {% <로직를 작성하는 공간> %}  {% endcomment %}
+  {% for menu in menus %} 
+  <p>{{ menu }}</p>
+  {% comment %} 함수의 구분을 인덴트로 하지 못하므로 다음과 같이 끝내야 한다. {% endcomment %}
+  {% endfor %} 
+  <hr/>
+
+  {% for menu in menus%}
+  {% comment %} 
+  {{ forloop }}은 DTL for 문에서 자동으로 생기는 객체.
+  {{ forloop.counter }}는 인덱스가 1부터 시작하는 숫자를 생성해 준다. 
+  {% endcomment %}
+  <p>{{ forloop.counter }}.  {{menu}}</p>
+  {% endfor %}
+  
+  <hr/>
+  
+  {% for user in empty_list %}
+  <p>{{ user }}</p>
+  {% empty %}
+  <p>현재 가입한 유저가 없습니다.</p>
+  {% endfor %}
+  <hr/>
+
+  <h2>2. 조건문</h2>
+  {% if '짜장' in menus%}
+  <p> 어머님은 짜장면이 싫다고 하셨어!</p>
+  {% else %}
+  <p>야이야이야아~</p>
+  {% endif %}
+  <hr>
+
+  {% for menu in menus%}
+  <p> <strong>{{ forloop.counter }}번째 도는 중</strong>
+  </p>
+  {% if forloop.first %}
+  <p>{{ menu }} + 고춧가루</p>
+  {% else %}
+  <p>{{ menu }}</p>
+  {% endif %}
+  {% endfor %}
+  <hr>
+  <h2>3. length filter 활용</h2>
+  {% for message in messages %}
+    {% if message|length > 5 %}
+      <p>{{ message }}, 글자가 너무 길어요.</p>
+      {% else %}
+      <p>{{ message }}, 글자길이는 {{ message|length }}</p>
+    {% endif %}
+  {% endfor %}
+  <hr align='left' width=300px;>
+
+  <h2>4. lorem ipsum</h2>
+  {% comment %}
+   시각적 연출, 표준 채우기 텍스트 아무 글이나 가져와서 내 페이지상에서 어떤식으로 표현되는지 확인하는 것 
+  {% endcomment %}
+  {% lorem 1 p random %}
+  {% comment %} 
+  밑에처럼 쓸 경우 불러오지 않는 이유 : {{}}는 사용자가 지정한 변수를 가져오기 때문에
+  {% endcomment %}
+  {{ lorem }}
+  <hr>
+
+  <h2>5. 글자 수 제한(truncate) : 잘라내기</h2>
+  {% comment %} 
+  F12에서 주석을 보이게하고 싶거나, 태그 뒤에 주석을 달고 싶을때는
+  html문법의 주석인 <!-- 내용 -->으로 작성해야 한다. 
+  {% endcomment %}
+  <p>{{ my_sentence|truncatewords:3 }}</p><!-- 단어 단위로 제한 -->
+  <p>{{ my_sentence|truncatechars:3 }}</p><!-- 문자 단위로 제한(3번째 문자는 포함하지 않는다.) -->
+  <p>{{ my_sentence|truncatechars:10 }}</p><!-- 문자 단위로 제한(10번째 문자는 포함하지 않는다.) -->
+
+  <hr>
+  <h2>6. 글자 관련 필터</h2>
+  <p>{{ 'abc'|length }}</p>
+  <p>{{ 'ABC'|lower }}</p>
+  <p>{{ my_sentence|title }}</p>
+  <p>{{ 'abc def. asdasgl'|capfirst }}</p>
+  <p>{{ menus|random }}</p>
+  <hr>
+
+  <h2>7. 연산</h2>
+  <p>
+  {{ 4|add:6 }}
+  </p>
+  <hr>
+
+  {% comment %} 
+  {% now "DATE_FORMAT" %} 가 내장되어 있다.
+   {% endcomment %}
+  <h2>8. 날짜표현(중요)</h2>
+  <p>{{ datetimenow }}</p>
+  {% now "DATE_FORMAT" %}
+  {% now "DATETIME_FORMAT" %}
+  
+  <p>{% now "SHORT_DATE_FORMAT" %}</p>
+  <p>{% now "SHORT_DATETIME_FORMAT" %}</p>
+  {% now "m-d H:i" %}
+  {% now "Y" as current_year %}
+  <p>Copyright {{ current_year }}</p>
+  <hr>
+  {% comment %}
+  위에 NOW를 쓴 상태는 지금의 날짜나 시간밖에 컨트롤하지 못하므로,
+  python database에 저장된 시간관련 로직을 다음과 같이 꺼낼 수 있다.
+   {% endcomment %}
+  {{datetimenow|date:"DATE_FORMAT"}}
+  <hr>
+
+  <h2>9. 기타</h2>
+  {% comment %} a tag 대용으로 사용 가능 {% endcomment %}
+  <p>{{"google.com"|urlize}}</p>
+  <hr>
+
+</body>
+</html>
+```
+

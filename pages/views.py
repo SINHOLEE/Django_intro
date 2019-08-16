@@ -75,17 +75,42 @@ def times(request, num1, num2):
 
 
 def template_language(request):
-    menu = ['짜장면', '탕수육', '양장피', '짬뽕']
-    my_santence = 'Life is short, you need python'
+    menus = ['짜장면', '탕수육', '양장피', '짬뽕']
+    my_sentence = 'Life is short, you need python'
     messages = ['apple', 'banana', 'cucumber', 'mango', 'bob']
     datetimenow = datetime.now()
     empty_list = []
 
     context = {
-        'menu' : menu,
-        'my_santence' : my_santence,
+        'menus' : menus,
+        'my_sentence' : my_sentence,
         'messages' : messages,
         'datetimenow' : datetimenow,
         'empty_list' : empty_list,
     }
     return render(request, 'template_language.html', context)
+
+def isitbirthday(request):
+    my_birthday = datetime(1992, 8, 16)
+    context = {
+        'my_birthday' : my_birthday,
+    }
+    return render(request, 'isitbirthday.html', context)
+
+def lotto(request):
+    real_lotto = [21, 25, 30, 32, 40, 42]
+    lotto = sorted(random.sample(range(1,46), 6))  # 희원이가 랜덤으로 뽑은 로또
+    count = 0
+    get = ''
+    while get != 'get':
+        count += 1
+        if real_lotto == lotto:
+            get  = 'get'
+            break
+    context = {
+        'real_lotto' : real_lotto,
+        'lotto' : lotto,
+        'count' : count,
+    }
+
+    return render(request, 'lotto.html', context)

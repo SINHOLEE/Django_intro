@@ -22,6 +22,8 @@ from django.urls import path
 from pages import views
 
 urlpatterns = [
+    path('lotto/', views.lotto),
+    path('isitbirthday/', views.isitbirthday),
     path('template_language/', views.template_language),
     path('times/<int:num1>/<int:num2>/', views.times),
     path('greeting/<str:name>/', views.greeting),

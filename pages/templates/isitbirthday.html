@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Is it Birthday?</title>
+</head>
+<body>
+{% now "m-d" as current_md %}
+{% comment %} {% if  my_birthday|date:"m-d"  == current_md %}
+<p>생일입니다.</p>
+{% else %}
+<p>생일이 아닙니다.</p>
+{% endif %} {% endcomment %}
+{% if '08-11' == current_md %}
+  <h2>예</h2>
+{% else %}
+  <h2>아니오</h2>
+{% endif %}
+
+</body>
+</html>
