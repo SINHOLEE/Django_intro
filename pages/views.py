@@ -150,3 +150,5 @@ def api_lotto_result(request):
     print(aa)
     return render(request, 'api_lotto_result.html')
 
+def static_example(request):
+    return render(request, 'static_example.html')

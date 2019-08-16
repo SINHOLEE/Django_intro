@@ -22,6 +22,7 @@ from django.urls import path
 from pages import views
 
 urlpatterns = [
+    path('static_example/', views.static_example),
     path('api_lotto/', views.api_lotto),
     path('api_lotto_result/', views.api_lotto_result),
     path('lotto_pick/', views.lotto_pick),
