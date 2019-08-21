@@ -59,10 +59,15 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'django_intro.urls'
 
+# 지금 내가 하고 싶은것
+# 프로젝트 최상단에 templates 폴더를 만들었다. 이것도 각 app폴더에 있는 templates들과 함께 인식해주세요.의 작업을 하고싶다.
+# BASE_DIR은 프로젝트 최상단을 가리킨다.
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # DIRS : 디렉토리를 모아두는 곳  디폴트값은 -> []
+        # APP_DIRS TRUE는 우리가 만든 어플리케이션들 안에 있는 templates폴더들을 한곳에 모아두겠다.
+        'DIRS': [os.path.join(BASE_DIR, 'django_intro', 'templates',)],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

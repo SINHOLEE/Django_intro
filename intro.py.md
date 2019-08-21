@@ -361,3 +361,25 @@ def greeting(request, name):
 </html>
 ```
 
+#  8. Final
+
+
+
+마지막 작업을 끝맞추고 다음과 같은 과정을 거친다.
+
+```bash
+$ pip freeze -> requirements
+```
+
+이렇게 하면 `requirements.txt`파일이 생긴다.
+
+
+
+새로시작할때  `requirements.txt` 를 통해서 인스톨 한다.
+
+```bash
+pip install -r requirements.txt
+```
+
+- -r은 재귀적으로 순회하면서 깔라는 뜻
+

@@ -26,6 +26,7 @@ urlpatterns = [
 
     # django_intro/urls.py로 사용자의 요청이 들어오면, pages/urls.py로 보낸다는 제어문
     # import path, include
-    path('pages/', include('pages.urls')),
     path('utilities/', include('utilities.urls')),
+
+    path('pages/', include('pages.urls')),
 ]
