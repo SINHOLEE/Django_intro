@@ -33,7 +33,8 @@ ALLOWED_HOSTS = []
 # 등록 / 등록할 때 순서가 있다. 
 INSTALLED_APPS = [
     # Local apps / 우리가 생성한 앱들, 항상 맨 위에 둔다.
-    'pages',
+    'pages', 
+    'utilities',
     
     # Third party apps / ex) bootstrap을 사용할 때 등록해야하는데 중간에 둔다.
     

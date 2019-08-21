@@ -152,3 +152,13 @@ def api_lotto_result(request):
 
 def static_example(request):
     return render(request, 'static_example.html')
+
+def num_push(request):
+        return render(request, 'num_push.html')
+    
+def num_pull(request):
+    num = request.GET.get('num')
+    context = {
+        'num': num,
+        }
+    return render(request, 'num_pull.html', context)	

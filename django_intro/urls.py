@@ -14,29 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 # 경로를 잘 보라.
 # pages/views.py/index()
 # pages라는 어플리케이션안에 있는 view.py라는 파일을 임포트 해서, view.index 함수를 접근하도록 하자.
-from pages import views
 
 urlpatterns = [
-    path('static_example/', views.static_example),
-    path('api_lotto/', views.api_lotto),
-    path('api_lotto_result/', views.api_lotto_result),
-    path('lotto_pick/', views.lotto_pick),
-    path('lotto_result/', views.lotto_result),
-    path('result/', views.result),
-    path('search/', views.search),
-    path('lotto/', views.lotto),
-    path('isitbirthday/', views.isitbirthday),
-    path('template_language/', views.template_language),
-    path('times/<int:num1>/<int:num2>/', views.times),
-    path('greeting/<str:name>/', views.greeting),
-    path('image/', views.image),
-    path('dinner/<str:name>/', views.dinner),
-    path('index/', views.index),
-    path('introduce/', views.introduce),
+	
     path('admin/', admin.site.urls),
+
+    # django_intro/urls.py로 사용자의 요청이 들어오면, pages/urls.py로 보낸다는 제어문
+    # import path, include
+    path('pages/', include('pages.urls')),
+    path('utilities/', include('utilities.urls')),
 ]
