@@ -162,3 +162,9 @@ def num_pull(request):
         'num': num,
         }
     return render(request, 'pages/num_pull.html', context)	
+
+def one(request):
+    return render(request,'pages/one.html')
+
+def two(request):
+    return render(request,'pages/two.html')
